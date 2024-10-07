@@ -1,5 +1,3 @@
-from pprint import pprint
-
 print('------\nЗадача "Учёт товаров"\n------')
 
 class Product:
