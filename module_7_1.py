@@ -23,12 +23,14 @@ class Shop(Product):
 
     def add(self, *products):
         file = open(self.__file_name, 'a+')
+        file.seek(0)
         f_list = file.readlines()
         file.close()
         flag = False
         for i in range(len(products)):
+            products_str = products[i].__str__()
             for line in f_list:
-                if products[i] in line:
+                if products_str in line:
                     flag = True
             if flag:
                 print(f'Продукт {products[i]} уже есть в магазине')
@@ -42,10 +44,10 @@ p1 = Product('Potato', 50.5, 'Vegetables')
 p2 = Product('Spaghetti', 3.4, 'Groceries')
 p3 = Product('Potato', 5.5, 'Vegetables')
 
-print(p2)
+print(p2, '\n')
 
 s1.add(p1, p2, p3)
 
-print(s1.get_products())
+print(f'\n{s1.get_products()}')
 
 print('------')
