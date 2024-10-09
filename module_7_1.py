@@ -10,10 +10,10 @@ class Product:
         return (f'{self.name}, {self.weigth}, {self.category}')
 
 class Shop(Product):
-    __file_name = 'products.txt'
     def __init__(self, name = '', weigt = 0.0, category = ''):
         Product.__init__(self, name = name, weigth = weigt, category = category)
         Product.__str__(self)
+        __file_name = 'products.txt'
 
     def get_products(self):
         file = open(self.__file_name, 'r')
@@ -25,7 +25,6 @@ class Shop(Product):
         file = open(self.__file_name, 'a+')
         file.seek(0)
         f_list = file.readlines()
-        file.close()
         flag = False
         for i in range(len(products)):
             products_str = products[i].__str__()
@@ -35,9 +34,8 @@ class Shop(Product):
             if flag:
                 print(f'Продукт {products[i]} уже есть в магазине')
             else:
-                file = open(self.__file_name, 'a')
                 file.write(f'{products[i]}\n')
-                file.close()
+        file.close()
 
 s1 = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
